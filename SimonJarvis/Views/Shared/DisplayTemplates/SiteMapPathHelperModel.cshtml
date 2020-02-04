@@ -1,0 +1,25 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapPathHelperModel
+@using System.Web.Mvc.Html
+@using System.Linq
+@using MvcSiteMapProvider.Web.Html.Models
+
+@foreach (var node in Model)
+{
+
+
+
+    if (node != Model.Last())
+    {
+        @Html.DisplayFor(m => node)
+        <text>
+            <span class="crumbtrail"></span>
+        </text>
+    }
+    if (node == Model.Last())
+    {
+        <span class="current-page">
+            @Html.DisplayFor(m => node)
+        </span>
+    }
+
+}
