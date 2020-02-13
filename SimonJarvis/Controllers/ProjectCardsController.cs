@@ -29,6 +29,8 @@ namespace SimonJarvis.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
+            
+
             //STUFF
             List<ProjectInfoCard> projects = new List<ProjectInfoCard>();
 
@@ -57,7 +59,20 @@ namespace SimonJarvis.Controllers
             projects.Add(pIC);
 
             //STUFF END
-
+            switch (sortOrder)
+            {
+                case "Name":
+                    projects = projects.OrderBy(x=>x.Name).ToList();
+                    break;
+                case "Id":
+                    projects = projects.OrderByDescending(x => x.id).ToList();
+                    break;
+                case "Status":
+                    projects = projects.OrderBy(x => x.status).ToList();
+                    break;
+                default:
+                    break;
+            }
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);

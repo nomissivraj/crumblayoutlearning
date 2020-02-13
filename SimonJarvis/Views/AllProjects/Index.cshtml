@@ -2,13 +2,55 @@
 @{
     ViewBag.Title = "Index";
 }
-<img src="~/Content/img/baby-yoda-craze.jpg" width="800" />
+<img src="~/Content/img/baby-yoda-craze.jpg" width="800" style="max-width:100%" />
 <h2>Index</h2>
 Index @DateTime.Now
+
+@{
+    var order = "";
+
+}
+<div class="row">
+    <div class="col-4">
+        @Ajax.ActionLink("Name sort", "Index", "ProjectCards", new { sortOrder = "Name" }, new AjaxOptions
+            {
+
+                HttpMethod = "GET",
+                UpdateTargetId = "test",
+                InsertionMode = InsertionMode.Replace
+
+            })
+        
+    </div>
+    <div class="col-4">
+        @Ajax.ActionLink("ID Sort", "Index", "ProjectCards", new { sortOrder = "Id" }, new AjaxOptions
+            {
+
+                HttpMethod = "GET",
+                UpdateTargetId = "test",
+                InsertionMode = InsertionMode.Replace
+
+            })
+        
+    </div>
+    <div class="col-4">
+        @Ajax.ActionLink("Status", "Index", "ProjectCards", new { sortOrder = "Status" }, new AjaxOptions
+            {
+
+                HttpMethod = "GET",
+                UpdateTargetId = "test",
+                InsertionMode = InsertionMode.Replace
+
+            })
+        
+    </div>
+</div>
+
+
 <div id="test">
 
     @{
-        Html.RenderAction("Index", "ProjectCards");
+        Html.RenderAction("Index", "ProjectCards", new { sortOrder = order });
     }
 
 </div>
