@@ -29,11 +29,40 @@ textarea {
     height: 10px;
     position: relative
 }
-.crumbtrail::after {
-    content: '>';
-    font-weight: bold;
-    color: #f00;
-    display: block;
-    width: 10px;
-    height: 10px;
+
+    .crumbtrail::after {
+        content: '>';
+        font-weight: bold;
+        color: #f00;
+        display: block;
+        width: 10px;
+        height: 10px;
+    }
+
+
+.pagination,
+.pagination-container,
+.pagination li {
+    display: inline-block;
 }
+
+.pagination li {
+    margin-right: 5px;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: #fff;
+    background: grey;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+    .pagination li.active{
+        user-select: none;
+    }
+
+    .pagination li.active a,
+    .pagination a:hover {
+        background: whitesmoke;
+        color: grey;
+    }

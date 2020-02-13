@@ -6,6 +6,8 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/widgets")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,20 +40,39 @@
 
         }
         @*@if (ViewContext.RouteData.Values["controller"].ToString() == "Home")
-            {
-                @Html.Label(ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["controller"].ToString())
-            }
+        {
+            @Html.Label(ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), ViewContext.RouteData.Values["controller"].ToString())
+        }
 
-            @if (ViewContext.RouteData.Values["controller"].ToString() != "Home")
+        @if (ViewContext.RouteData.Values["controller"].ToString() != "Home")
+        {
+            @:Home > @Request.RawUrl
+            if (ViewContext.RouteData.Values["action"].ToString() != "Index")
             {
-                @:Home > @Request.RawUrl
-                if (ViewContext.RouteData.Values["action"].ToString() != "Index")
-                {
-                    @:> @Html.Label(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString())
-                }
-            }*@
+                @:> @Html.Label(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString())
+            }
+        }*@
 
         @RenderBody()
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

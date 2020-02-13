@@ -1,0 +1,17 @@
+﻿
+@model SimonJarvis.Models.ViewModels.TestViewModel
+
+@using (Html.BeginForm("Form_Save", "DifferentLayout"))
+{
+    <fieldset>
+        <legend>Legend</legend>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name)
+        </div>
+    </fieldset>
+
+    @Html.HiddenFor(x => x.id)
+    @Html.AntiForgeryToken()
+    <button class="btn btn-primary">Submit</button>
+}

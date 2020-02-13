@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<img src="~/Content/img/baby-yoda-craze.jpg" width="800" />
+<h2>Index</h2>
+Index @DateTime.Now
+<div id="test">
+
+    @{
+        Html.RenderAction("Index", "ProjectCards");
+    }
+
+</div>

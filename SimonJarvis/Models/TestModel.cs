@@ -8,5 +8,6 @@ namespace SimonJarvis.Models
     public class TestModel
     {
         public int id { get; set; }
+        public string Name { get; set; }
     }
 }

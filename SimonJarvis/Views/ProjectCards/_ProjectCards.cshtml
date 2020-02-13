@@ -1,0 +1,41 @@
+﻿@model PagedList.IPagedList<SimonJarvis.Models.ViewModels.ProjectInfoCard>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-12">
+        Cards @DateTime.Now
+    </div>
+</div>
+<div id="" class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-6" style="border: 1px solid #555; border-radius: 5px">
+            @item.id <span> </span> @item.Name<br />
+            @item.status<br /><br />
+        </div>
+    }
+</div>
+
+<div class="row py-4">
+    <div class="col-12">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model,
+            page => Url.Action("Index", new
+            {
+                page,
+                sortOrder = ViewBag.CurrentSort,
+                currentFilter = ViewBag.CurrentFilter
+            }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "test",
+                InsertionMode = InsertionMode.Replace
+            }))
+    </div>
+</div>
+<script>
+
+</script>
