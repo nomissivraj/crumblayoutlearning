@@ -149,7 +149,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KnowledgeController.cs" />
     <Compile Include="Controllers\KnowledgeSubController.cs" />
-    <Compile Include="Controllers\ProjectCardsController.cs" />
     <Compile Include="DAL\AppDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -307,7 +306,7 @@
     <Content Include="Views\Shared\_AltLayout.cshtml" />
     <Content Include="Views\DifferentLayout\_Form.cshtml" />
     <Content Include="Views\AllProjects\Index.cshtml" />
-    <Content Include="Views\ProjectCards\_ProjectCards.cshtml" />
+    <Content Include="Views\AllProjects\_ProjectCards.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />

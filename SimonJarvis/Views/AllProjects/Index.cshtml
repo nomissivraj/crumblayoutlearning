@@ -12,7 +12,7 @@ Index @DateTime.Now
 }
 <div class="row">
     <div class="col-4">
-        @Ajax.ActionLink("Name sort", "Index", "ProjectCards", new { sortOrder = "Name" }, new AjaxOptions
+        @Ajax.ActionLink("Name Sort", "ProjectCards", "AllProjects", new { sortOrder = "Name" }, new AjaxOptions
             {
 
                 HttpMethod = "GET",
@@ -23,7 +23,7 @@ Index @DateTime.Now
         
     </div>
     <div class="col-4">
-        @Ajax.ActionLink("ID Sort", "Index", "ProjectCards", new { sortOrder = "Id" }, new AjaxOptions
+        @Ajax.ActionLink("ID Sort", "ProjectCards", "AllProjects", new { sortOrder = "Id" }, new AjaxOptions
             {
 
                 HttpMethod = "GET",
@@ -34,7 +34,7 @@ Index @DateTime.Now
         
     </div>
     <div class="col-4">
-        @Ajax.ActionLink("Status", "Index", "ProjectCards", new { sortOrder = "Status" }, new AjaxOptions
+        @Ajax.ActionLink("Status", "ProjectCards", "AllProjects", new { sortOrder = "Status" }, new AjaxOptions
             {
 
                 HttpMethod = "GET",
@@ -50,7 +50,7 @@ Index @DateTime.Now
 <div id="test">
 
     @{
-        Html.RenderAction("Index", "ProjectCards", new { sortOrder = order });
+        Html.RenderAction("ProjectCards", "AllProjects", new { sortOrder = order });
     }
 
 </div>
