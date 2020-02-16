@@ -4,52 +4,71 @@
 }
 <img src="~/Content/img/baby-yoda-craze.jpg" width="800" style="max-width:100%" />
 <h2>Index</h2>
-Index @DateTime.Now
-
+<br />
 @{
     var order = "";
 
 }
+
 <div class="row">
-    <div class="col-3">
-        @Ajax.ActionLink("Name Sort", "ProjectCards", "AllProjects", new { sortOrder = "Name" }, new AjaxOptions
-            {
-
-                HttpMethod = "GET",
-                UpdateTargetId = "test",
-                InsertionMode = InsertionMode.Replace
-
-            })
-
+    <div class="col-6">
+        <label for="filterType">Filter By</label>
+        <select id="filterType" class="w-100">
+            <option selected disabled>Select</option>
+            <option value="Name">
+                Name
+            </option>
+            <option value="Status">
+                Status
+            </option>
+            <option value="Other">
+                Other
+            </option>
+        </select>
     </div>
-    <div class="col-3">
-        @Ajax.ActionLink("ID Sort", "ProjectCards", "AllProjects", new { sortOrder = "Id" }, new AjaxOptions
-            {
-
-                HttpMethod = "GET",
-                UpdateTargetId = "test",
-                InsertionMode = InsertionMode.Replace
-
-            })
-
-    </div>
-    <div class="col-3">
-        @Ajax.ActionLink("Status", "ProjectCards", "AllProjects", new { sortOrder = "Status" }, new AjaxOptions
-            {
-
-                HttpMethod = "GET",
-                UpdateTargetId = "test",
-                InsertionMode = InsertionMode.Replace
-
-            })
-
-    </div>
-    <div class="col-3">
+    <div id="searchFilter" class="col-6" style="display: none">
         <label for="search">Search</label>
-        <input id="search" type="text" />
+        <input id="search" type="text" class="w-100" />
+    </div>
+    <div id="otherFilters" class="col-6" style="position: relative;">
+        <div class="row" style="position: absolute; width: 100%; bottom:2px;">
+            <div class="col-4">
+                @Ajax.ActionLink("Name Sort", "ProjectCards", "AllProjects", new { sortOrder = "Name" }, new AjaxOptions
+                    {
+
+                        HttpMethod = "GET",
+                        UpdateTargetId = "test",
+                        InsertionMode = InsertionMode.Replace
+
+                    })
+
+            </div>
+            <div class="col-4">
+                @Ajax.ActionLink("ID Sort", "ProjectCards", "AllProjects", new { sortOrder = "Id" }, new AjaxOptions
+                    {
+
+                        HttpMethod = "GET",
+                        UpdateTargetId = "test",
+                        InsertionMode = InsertionMode.Replace
+
+                    })
+
+            </div>
+            <div class="col-4">
+                @Ajax.ActionLink("Status", "ProjectCards", "AllProjects", new { sortOrder = "Status" }, new AjaxOptions
+                    {
+
+                        HttpMethod = "GET",
+                        UpdateTargetId = "test",
+                        InsertionMode = InsertionMode.Replace
+
+                    })
+
+            </div>
+        </div>
     </div>
 </div>
-
+<br />
 
 <div id="test">
 
@@ -60,10 +79,27 @@ Index @DateTime.Now
 </div>
 @section scripts {
     <script>
+        var filter;
+        $('#filterType').on('change', function (e) {
+            filter = $(this).children("option:selected").val()
+            switch (filter.toLowerCase()) {
+                case "name":
+                case "status":
+                    $('#searchFilter').show();
+                    $('#otherFilters').hide();
+                    break;
+                default:
+                    $('#searchFilter').hide();
+                    $('#otherFilters').show();
+                    break;
+            }
+
+        });
+
         $('#search').on('input', function () {
             console.log('input');
             $.ajax({
-                url: "/AllProjects/ProjectCards?sortOrder=Name&searchString=" + $(this).val(),
+                url: "/AllProjects/ProjectCards?sortOrder=Name&filter=" + filter + "&searchString=" + $(this).val(),
                 success: function (result) {
                     console.log("Success");
                     $('#test').html(result);

@@ -19,7 +19,7 @@ namespace SimonJarvis.Controllers
 
         // GET: ProjectCards
         [HttpGet]
-        public PartialViewResult ProjectCards(string sortOrder, string searchString, int? page)
+        public PartialViewResult ProjectCards(string sortOrder, string filter, string searchString, int? page)
         {
             //ViewBag.CurrentSort = sortOrder;
             //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -85,7 +85,18 @@ namespace SimonJarvis.Controllers
             if (searchString != null)
             {
                 page = 1;
-                projects = projects.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
+                switch (filter.ToLower()) {
+                    case "name":
+                        projects = projects.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
+                        break;
+                    case "status":
+                        projects = projects.Where(x => x.status.ToLower().Contains(searchString.ToLower())).ToList();
+                        break;
+                    default:
+                        break;
+                }
+                
+               
             }
 
 
