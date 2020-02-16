@@ -19,22 +19,22 @@ namespace SimonJarvis.Controllers
 
         // GET: ProjectCards
         [HttpGet]
-        public PartialViewResult ProjectCards(string sortOrder, string currentFilter, string searchString, int? page)
+        public PartialViewResult ProjectCards(string sortOrder, string searchString, int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            //ViewBag.CurrentSort = sortOrder;
+            //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+            //if (searchString != null)
+            //{
+            //    page = 1;
+            //}
+            //else
+            //{
+            //    searchString = currentFilter;
+            //}
 
-            ViewBag.CurrentFilter = searchString;
+            //ViewBag.CurrentFilter = searchString;
 
 
 
@@ -80,6 +80,15 @@ namespace SimonJarvis.Controllers
                 default:
                     break;
             }
+
+
+            if (searchString != null)
+            {
+                page = 1;
+                projects = projects.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+
+
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);

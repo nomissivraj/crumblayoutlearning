@@ -8,14 +8,21 @@
         Cards @DateTime.Now
     </div>
 </div>
-<div id="" class="row">
-    @foreach (var item in Model)
+<div id="" class="row px-4">
+    @if (Model.Count() > 0)
     {
-        <div class="col-6" style="border: 1px solid #555; border-radius: 5px">
-            @item.id <span> </span> @item.Name<br />
-            @item.status<br /><br />
-        </div>
+        foreach (var item in Model)
+        {
+            <div class="col-6" style="border: 1px solid #555; border-radius: 5px">
+                @item.id <span> </span> @item.Name<br />
+                @item.status<br /><br />
+            </div>
+        }
+    } else
+    {
+        <span style="color: #707070">No Results</span>
     }
+
 </div>
 
 <div class="row py-4">
@@ -36,6 +43,4 @@
             }))
     </div>
 </div>
-<script>
 
-</script>

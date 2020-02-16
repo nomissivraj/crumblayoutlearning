@@ -11,7 +11,7 @@ Index @DateTime.Now
 
 }
 <div class="row">
-    <div class="col-4">
+    <div class="col-3">
         @Ajax.ActionLink("Name Sort", "ProjectCards", "AllProjects", new { sortOrder = "Name" }, new AjaxOptions
             {
 
@@ -20,9 +20,9 @@ Index @DateTime.Now
                 InsertionMode = InsertionMode.Replace
 
             })
-        
+
     </div>
-    <div class="col-4">
+    <div class="col-3">
         @Ajax.ActionLink("ID Sort", "ProjectCards", "AllProjects", new { sortOrder = "Id" }, new AjaxOptions
             {
 
@@ -31,9 +31,9 @@ Index @DateTime.Now
                 InsertionMode = InsertionMode.Replace
 
             })
-        
+
     </div>
-    <div class="col-4">
+    <div class="col-3">
         @Ajax.ActionLink("Status", "ProjectCards", "AllProjects", new { sortOrder = "Status" }, new AjaxOptions
             {
 
@@ -42,7 +42,11 @@ Index @DateTime.Now
                 InsertionMode = InsertionMode.Replace
 
             })
-        
+
+    </div>
+    <div class="col-3">
+        <label for="search">Search</label>
+        <input id="search" type="text" />
     </div>
 </div>
 
@@ -54,3 +58,21 @@ Index @DateTime.Now
     }
 
 </div>
+@section scripts {
+    <script>
+        $('#search').on('input', function () {
+            console.log('input');
+            $.ajax({
+                url: "/AllProjects/ProjectCards?sortOrder=Name&searchString=" + $(this).val(),
+                success: function (result) {
+                    console.log("Success");
+                    $('#test').html(result);
+                },
+                failure: function () {
+                    console.log("failed");
+                }
+            });
+        });
+
+    </script>
+}
