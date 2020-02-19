@@ -1,4 +1,4 @@
-﻿
+﻿@*@model SimonJarvis.Models.FilesModel*@
 @{
     ViewBag.Title = "Index";
 }
@@ -9,6 +9,17 @@
     var order = "";
 
 }
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-3 text-center">
+        <a href="/Download?path=@item.FilePath&file=@item.FileName" class="text-center">
+            <img src="~/Content/img/download-file.svg" />
+            @item.FileName
+        </a>
+    </div>
+    }
+</div>
 
 <div class="row">
     <div class="col-6">

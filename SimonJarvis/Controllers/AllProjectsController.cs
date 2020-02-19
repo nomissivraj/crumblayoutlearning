@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SimonJarvis.Models.ViewModels;
 using PagedList;
+using SimonJarvis.DAL.Services;
 
 namespace SimonJarvis.Controllers
 {
@@ -13,30 +14,18 @@ namespace SimonJarvis.Controllers
         // GET: AllProjects
         public ActionResult Index()
         {
+            Service s = new Service();
+            var model = s.GetFilesFromJSON("~/Content/data/insight/files.js", "Page Name");
 
-            return View();
+            return View(null, null, model.Files);
         }
+
+        
 
         // GET: ProjectCards
         [HttpGet]
         public PartialViewResult ProjectCards(string sortOrder, string filter, string searchString, int? page)
         {
-            //ViewBag.CurrentSort = sortOrder;
-            //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            //ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-
-            //if (searchString != null)
-            //{
-            //    page = 1;
-            //}
-            //else
-            //{
-            //    searchString = currentFilter;
-            //}
-
-            //ViewBag.CurrentFilter = searchString;
-
-
 
             //STUFF
             List<ProjectInfoCard> projects = new List<ProjectInfoCard>();
@@ -85,7 +74,8 @@ namespace SimonJarvis.Controllers
             if (searchString != null)
             {
                 page = 1;
-                switch (filter.ToLower()) {
+                switch (filter.ToLower())
+                {
                     case "name":
                         projects = projects.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).ToList();
                         break;
@@ -95,8 +85,8 @@ namespace SimonJarvis.Controllers
                     default:
                         break;
                 }
-                
-               
+
+
             }
 
 
